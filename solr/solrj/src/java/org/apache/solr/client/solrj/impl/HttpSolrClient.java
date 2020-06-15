@@ -602,6 +602,9 @@ public class HttpSolrClient extends BaseHttpSolrClient {
                 + " sent back a redirect (" + httpStatus + ").");
           }
           break;
+        case HttpStatis.SC_NOT_FOUND:
+          throw new SolrServerException("Incorrect path: " + getBaseURL()
+              + ", check your base url and collection name");
         default:
           if (processor == null || contentType == null) {
             throw new RemoteSolrException(baseUrl, httpStatus, "non ok status: " + httpStatus
